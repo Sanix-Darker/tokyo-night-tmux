@@ -22,7 +22,7 @@ tmux set -g message-command-style "fg=#c0caf5,bg=#2A2F41"
 tmux set -g pane-border-style "fg=#2A2F41"
 tmux set -g pane-active-border-style "fg=#7aa2f7"
 
-tmux set -g status-style bg="#1A1B26"
+# tmux set -g status-style bg="#1A1B26"
 
 SCRIPTS_PATH="$CURRENT_DIR/src"
 TMUX_VARS="$(tmux show -g)"
@@ -39,23 +39,23 @@ window_id_style="${window_id_style:-$default_window_id_style}"
 pane_id_style="${pane_id_style:-$default_pane_id_style}"
 zoom_id_style="${zoom_id_style:-$default_zoom_id_style}"
 
-cmus_status="#($SCRIPTS_PATH/music-tmux-statusbar.sh)"
-git_status="#($SCRIPTS_PATH/git-status.sh #{pane_current_path})"
-wb_git_status="#($SCRIPTS_PATH/wb-git-status.sh #{pane_current_path} &)"
-window_number="#($SCRIPTS_PATH/custom-number.sh #I $window_id_style)"
+# cmus_status="#($SCRIPTS_PATH/music-tmux-statusbar.sh)"
+# git_status="#($SCRIPTS_PATH/git-status.sh #{pane_current_path})"
+# wb_git_status="#($SCRIPTS_PATH/wb-git-status.sh #{pane_current_path} &)"
+# window_number="#($SCRIPTS_PATH/custom-number.sh #I)"
 custom_pane="#($SCRIPTS_PATH/custom-number.sh #P $pane_id_style)"
 zoom_number="#($SCRIPTS_PATH/custom-number.sh #P $zoom_id_style)"
 
 #+--- Bars LEFT ---+
 # Session name
-tmux set -g status-left "#[fg=#1F2335,bg=#6441a5,bold] #{?client_prefix,󰠠 ,#[dim]󰤂 }#[fg=#ffffff,bg=#6441a5,bold,nodim]#S $RESET"
+tmux set -g status-left "#[fg=#1F2335,bg=#364a91,bold] #{?client_prefix,󰠠 ,#[dim]󰤂 }#[fg=#ffffff,bg=#364a91,bold,nodim]#S $RESET"
 
 #+--- Windows ---+
 # Focus
-tmux set -g window-status-current-format "#[fg=#44dfaf,bg=#1F2335]   #[fg=#a9b1d6]$window_number #[bold,nodim]#W#[nobold,dim]#{?window_zoomed_flag, $zoom_number, $custom_pane} #{?window_last_flag,,} "
+tmux set -g window-status-current-format "#[fg=#44dfaf,bg=#252a40]  #[fg=#a9b1d6]#[bold,nodim]#W#[nobold,dim]#{?window_zoomed_flag, $zoom_number, $custom_pane} #{?window_last_flag,,} "
 # Unfocused
-tmux set -g window-status-format "#[fg=#c0caf5,bg=default,none,dim]   $window_number #W#[nobold,dim]#{?window_zoomed_flag, $zoom_number, $custom_pane}#[fg=yellow,blink] #{?window_last_flag,󰁯 ,} "
+tmux set -g window-status-format "#[fg=#c0caf5,bg=default,none,dim] #W#[nobold,dim]#{?window_zoomed_flag, $zoom_number, $custom_pane}#[fg=yellow,blink] #{?window_last_flag,󰁯 ,} "
 
 #+--- Bars RIGHT ---+
-tmux set -g status-right "$cmus_status#[fg=#a9b1d6,bg=#24283B]  %Y-%m-%d #[]❬ %H:%M $git_status$wb_git_status"
+tmux set -g status-right "#[fg=#a9b1d6,bg=#24283B]%Y-%m-%d #[]❬ %H:%M"
 tmux set -g window-status-separator ""
